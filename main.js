@@ -1,7 +1,7 @@
-function metrificar(event) {
+const metrificar = (e) => {
   // Dividir o poema colocado em diversas linhas
-  let poema = document.getElementById("poema").value;
-  let linhas = poema.split("\n");
+  const poema = document.getElementById("poema").value;
+  const linhas = poema.split("\n");
 
   // Contagem dos versos,estrofes e silabas
   // Começamos estrofes em 1 para corrigir a contagem da primeira estrofe
@@ -32,11 +32,11 @@ function metrificar(event) {
     }
   }
 
-  let estrofesOutput = document.getElementById("estrofes");
-  let versosOutput = document.getElementById("versos");
-  let silabasOutput = document.getElementById("silabas");
+  const estrofesOutput = document.getElementById("estrofes");
+  const versosOutput = document.getElementById("versos");
+  const silabasOutput = document.getElementById("silabas");
 
   estrofesOutput.textContent = `Estrofes: ${estrofes}`;
   versosOutput.textContent = `Versos: ${versos}`;
   silabasOutput.textContent = `Silabas tônicas: ${silabas}`;
-}
+};
