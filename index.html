@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metrify</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+    />
+  </head>
+  <body>
+    <div>
+      <h1>Metrify v0.2</h1>
+      <p>Metrifique aqui os seus poemas da aula de literatura</p>
+    </div>
+    <div>
+      <textarea
+        name="poema"
+        id="poema"
+        style="width: 100%"
+        cols="50"
+        rows="20"
+        onchange="metrificar()"
+        onkeyup="metrificar()"
+      ></textarea>
+    </div>
+    <div>
+      <p id="estrofes">Estrofes:</p>
+      <p id="versos">Versos:</p>
+    </div>
+    <script>
+      function metrificar(event) {
+        // Dividir o poema colocado em diversas linhas
+        let poema = document.getElementById("poema").value;
+        let linhas = poema.split("\n");
+
+        // Contagem dos versos e de estrofes
+        // Começamos estrofes em 1 para corrigir a contagem da primeira estrofe
+        let versos = 0;
+        let estrofes = 1;
+
+        let ultimaLinhaEstrofe = false;
+        for (const linha in linhas) {
+          // Isso daqui deve ser uma nova estrofe
+          if (linhas[linha] === "") {
+            // Apenas contamos essa estrofe se a última linha não estava vazia
+            if (!ultimaLinhaEstrofe) {
+              ultimaLinhaEstrofe = true;
+            }
+          }
+
+          // Novo verso
+          else {
+            versos++;
+
+            // Caso a última linha estivesse vazia, contamos uma estrofe
+            if (ultimaLinhaEstrofe) {
+              estrofes++;
+              ultimaLinhaEstrofe = false;
+            }
+          }
+        }
+
+        let estrofesOutput = document.getElementById("estrofes");
+        let versosOutput = document.getElementById("versos");
+
+        estrofesOutput.textContent = `Estrofes: ${estrofes}`;
+        versosOutput.textContent = `Versos: ${versos}`;
+      }
+    </script>
+  </body>
+</html>
